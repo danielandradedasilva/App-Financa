@@ -50,7 +50,7 @@ class Bd {
             //recuperar a despesa
             let despesa = JSON.parse(localStorage.getItem(i));
             //existe a possibilidade de haver índices que foram removidas/pulados
-            //nete caso vamos pular esses índices
+            //neste caso vamos pular esses índices
             if (despesa === null) {
                 continue;
             }
@@ -109,6 +109,49 @@ function cadastrarDespesas() {
 
 function carregaListaDespesas() {
     let despesas = Array();
-    despesas = dataBase.recuperaTodosRegistros()
-    console.log(despesas);
+    despesas = dataBase.recuperaTodosRegistros();
+    //selecionando o elememto tbody da tabela
+    let listaDespesas = document.getElementById('listaDespesas');
+
+    /*
+      <tr>
+         <td>15/03/2018</td>
+        <td>Alimentação</td>
+        <td>Compras do mês</td>
+        <td>444.50</td>
+      </tr>
+    */
+
+    //percorrer o array despesas, listando cada despesa de forma dinânica
+    despesas.forEach((des) => {
+
+        console.log(des)
+            //criando a linha (tr)
+        let linha = listaDespesas.insertRow()
+
+        //criar as colunas (td)
+        linha.insertCell(0).innerHTML = `${des.dia}/${des.mes}/${des.ano}`;
+
+        //ajustar o tipo
+        switch (des.tipo) {
+            case '1':
+                des.tipo = 'Alimentação'
+                break;
+            case '2':
+                des.tipo = 'Educação'
+                break;
+            case '3':
+                des.tipo = 'Lazer'
+                break;
+            case '4':
+                des.tipo = 'Saúde'
+                break;
+            case '5':
+                des.tipo = 'Transporte'
+                break;
+        }
+        linha.insertCell(1).innerHTML = des.tipo;
+        linha.insertCell(2).innerHTML = des.descricao;
+        linha.insertCell(3).innerHTML = des.valor;
+    })
 }
