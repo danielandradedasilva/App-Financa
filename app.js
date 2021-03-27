@@ -95,6 +95,14 @@ function cadastrarDespesas() {
         div_modal.className = 'modal-header bg-success text-light';
 
         $('#registraDespesa').modal('show');
+
+        //limpando todos os campos para um novo cadastro
+        ano.value = '';
+        mes.value = '';
+        dia.value = '';
+        tipo.value = '';
+        descricao.value = '';
+        valor.value = '';
     } else {
         // modal de erro
         modal_titulo.innerHTML = 'Falha ao cadastrar despesa';
@@ -112,15 +120,6 @@ function carregaListaDespesas() {
     despesas = dataBase.recuperaTodosRegistros();
     //selecionando o elememto tbody da tabela
     let listaDespesas = document.getElementById('listaDespesas');
-
-    /*
-      <tr>
-         <td>15/03/2018</td>
-        <td>Alimentação</td>
-        <td>Compras do mês</td>
-        <td>444.50</td>
-      </tr>
-    */
 
     //percorrer o array despesas, listando cada despesa de forma dinânica
     despesas.forEach((des) => {
