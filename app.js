@@ -64,9 +64,6 @@ class Bd {
         let despesasFiltradas = Array();
         despesasFiltradas = this.recuperaTodosRegistros();
 
-        console.log(despesa)
-        console.log(despesasFiltradas)
-
         if (despesa.ano != '') {
             console.log('ano')
             despesasFiltradas = despesasFiltradas.filter(dps => dps.ano == despesa.ano);
@@ -91,7 +88,7 @@ class Bd {
             console.log('valor')
             despesasFiltradas = despesasFiltradas.filter(dps => dps.valor == despesa.valor);
         }
-        console.log(despesasFiltradas);
+        return despesasFiltradas;
     }
 }
 
@@ -150,17 +147,19 @@ function cadastrarDespesas() {
     }
 }
 
-function carregaListaDespesas() {
-    let despesas = Array();
-    despesas = dataBase.recuperaTodosRegistros();
+function carregaListaDespesas(despesas = Array(), filtro = false) {
+
+    if (despesas.length == 0 && filtro == false) {
+        despesas = dataBase.recuperaTodosRegistros();
+    }
     //selecionando o elememto tbody da tabela
     let listaDespesas = document.getElementById('listaDespesas');
+    listaDespesas.innerHTML = '';
 
     //percorrer o array despesas, listando cada despesa de forma dinânica
     despesas.forEach((des) => {
 
-        console.log(des)
-            //criando a linha (tr)
+        //criando a linha (tr)
         let linha = listaDespesas.insertRow()
 
         //criar as colunas (td)
@@ -201,5 +200,8 @@ function pesquisarDespesas() {
 
     let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor);
 
-    dataBase.pesquisar(despesa);
+    let despesas = dataBase.pesquisar(despesa);
+
+    carregaListaDespesas(despesas, true);
+
 }
