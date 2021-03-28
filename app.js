@@ -58,6 +58,41 @@ class Bd {
         }
         return despesas;
     }
+
+    pesquisar(despesa) {
+
+        let despesasFiltradas = Array();
+        despesasFiltradas = this.recuperaTodosRegistros();
+
+        console.log(despesa)
+        console.log(despesasFiltradas)
+
+        if (despesa.ano != '') {
+            console.log('ano')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.ano == despesa.ano);
+        }
+        if (despesa.mes != '') {
+            console.log('mes')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.mes == despesa.mes);
+        }
+        if (despesa.dia != '') {
+            console.log('dia')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.dia == despesa.dia);
+        }
+        if (despesa.tipo != '') {
+            console.log('tipo')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.tipo == despesa.tipo);
+        }
+        if (despesa.descricao != '') {
+            console.log('descricao')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.descricao == despesa.descricao);
+        }
+        if (despesa.valor != '') {
+            console.log('valor')
+            despesasFiltradas = despesasFiltradas.filter(dps => dps.valor == despesa.valor);
+        }
+        console.log(despesasFiltradas);
+    }
 }
 
 let dataBase = new Bd();
@@ -153,4 +188,18 @@ function carregaListaDespesas() {
         linha.insertCell(2).innerHTML = des.descricao;
         linha.insertCell(3).innerHTML = des.valor;
     })
+}
+
+function pesquisarDespesas() {
+    let ano = document.getElementById('ano').value;
+    let mes = document.getElementById('mes').value;
+    let dia = document.getElementById('dia').value;
+    let tipo = document.getElementById('tipo').value;
+    let descricao = document.getElementById('descricao').value;
+    let valor = document.getElementById('valor').value;
+
+
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor);
+
+    dataBase.pesquisar(despesa);
 }
