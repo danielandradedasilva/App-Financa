@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
     <title>Orçamento pessoal</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap início -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -46,12 +49,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col mb-5">
+            <div class="col mb-5 col-sm-12 align-items-center">
                 <h1 class="display-4">Registro de nova despesa</h1>
             </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row mb-2 col-sm-12">
             <div class="col-md-2">
                 <select class="form-control" id="ano">
             <option value="">Ano</option>
@@ -93,17 +96,17 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-8">
+        <div class="row mb-5">
+            <div class="col-md-5 ml-3 mb-2">
                 <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-3 ml-3 mb-2">
                 <input type="text" class="form-control" placeholder="Valor" id="valor" />
             </div>
 
-            <div class="col-md-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary" onclick="cadastrarDespesas()">
+            <div class="col-md-2 ml-5 d-flex">
+                <button type="button" class="btn btn-outline-primary btn-block" style="width: 250px;" onclick="cadastrarDespesas()">
             <i class="fas fa-plus"></i>
           </button>
             </div>
